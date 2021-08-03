@@ -1,0 +1,115 @@
+﻿@model IEnumerable<PopIt.Models.StudentDetail>
+
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<h1>Profile</h1>
+<head>
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1528459584353-5297db1a9c01?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=775&q=80');
+        }
+    </style>
+
+
+    <table class="table" ; color: black; width: 100%" ; border="2">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Emailid)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RollNo)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Password)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ConfirmPassword)
+                    </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.GradeId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StudentName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dob)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.CreatedOn)
+                    </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.Lastlogin)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.ModifiedOn)
+                    </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.Category)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Emailid)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RollNo)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Password)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ConfirmPassword)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GradeId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StudentName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Dob)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address2)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.CreatedOn)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Lastlogin)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.ModifiedOn)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</head>
