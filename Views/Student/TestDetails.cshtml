@@ -1,0 +1,54 @@
+﻿@using Microsoft.AspNetCore.Http
+@model IEnumerable<PopIt.Models.TestDetail>
+
+@{
+    ViewData["Title"] = "TestDetails";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<h1>TestDetails</h1>
+@{
+
+    var GradeId = Context.Session.GetInt32("GradeId");
+    var GradeId2 = Context.Session.GetInt32("GradeId2");
+}
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TestName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SubjectName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.GradeId)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TestName)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SubjectName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GradeId)
+                        </td>
+                        <th>
+
+                            <center> @Html.ActionLink("Click Now", "TestRules", new { TestId = item.TestId }, null)</center>
+                        </th>
+                    </tr>
+
+                }
+            </tbody>
+        </table>

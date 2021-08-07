@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PopIt.Models;
+using Scrypt;
+////using BC = BCrypt.Net.BCrypt;
+//using BCrypt.Net;
+//using Org.BouncyCastle.Crypto.Generators;
 
 namespace PopIt.Controllers
 {
@@ -51,16 +53,16 @@ namespace PopIt.Controllers
             return View();
         }
 
-        // POST: TeacherDetails/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("TeacherId,TeacherName,Emailid,StaffNo,Password,ConfirmPassword,CategoryId,SubjectName,Experience,PhoneNumber,Address1,Address2,CreatedOn,Lastlogin,ModifiedOn")] TeacherDetail teacherDetail)
         {
             if (ModelState.IsValid)
             {
+                ScryptEncoder encoder = new ScryptEncoder();
                 _context.Add(teacherDetail);
+                teacherDetail.Password = encoder.Encode(teacherDetail.Password);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -81,8 +83,11 @@ namespace PopIt.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.UserCategories, "CategoryId", "CategoryName", teacherDetail.CategoryId);
+           
+           ViewData["CategoryId"] = new SelectList(_context.UserCategories, "CategoryId", "CategoryName", teacherDetail.CategoryId);
+            
             return View(teacherDetail);
+
         }
 
         // POST: TeacherDetails/Edit/5

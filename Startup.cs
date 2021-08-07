@@ -34,6 +34,7 @@ namespace PopIt
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
+            //services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddControllersWithViews();
             services.AddDbContext<PopItContext>(options =>
            options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));

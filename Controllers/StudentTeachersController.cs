@@ -49,9 +49,9 @@ namespace PopIt.Controllers
         // GET: StudentTeachers/Create
         public IActionResult Create()
         {
-            ViewData["StudentId"] = new SelectList(_context.StudentDetails, "StudentId", "Address1");
+            ViewData["StudentId"] = new SelectList(_context.StudentDetails, "StudentId", "StudentName");
             ViewData["SubjectId"] = new SelectList(_context.Subjects, "SubjectId", "SubjectName");
-            ViewData["TeacherId"] = new SelectList(_context.TeacherDetails, "TeacherId", "Address1");
+            ViewData["TeacherId"] = new SelectList(_context.TeacherDetails, "TeacherId", "TeacherName");
             return View();
         }
 
@@ -68,9 +68,10 @@ namespace PopIt.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StudentId"] = new SelectList(_context.StudentDetails, "StudentId", "Address1", studentTeacher.StudentId);
+           
+            ViewData["StudentId"] = new SelectList(_context.StudentDetails, "StudentId", "StudentName", studentTeacher.StudentId);
             ViewData["SubjectId"] = new SelectList(_context.Subjects, "SubjectId", "SubjectName", studentTeacher.SubjectId);
-            ViewData["TeacherId"] = new SelectList(_context.TeacherDetails, "TeacherId", "Address1", studentTeacher.TeacherId);
+            ViewData["TeacherId"] = new SelectList(_context.TeacherDetails, "TeacherId", "TeacherName", studentTeacher.TeacherId);
             return View(studentTeacher);
         }
 
@@ -87,9 +88,9 @@ namespace PopIt.Controllers
             {
                 return NotFound();
             }
-            ViewData["StudentId"] = new SelectList(_context.StudentDetails, "StudentId", "Address1", studentTeacher.StudentId);
+            ViewData["StudentId"] = new SelectList(_context.StudentDetails, "StudentId", "StudentName", studentTeacher.StudentId);
             ViewData["SubjectId"] = new SelectList(_context.Subjects, "SubjectId", "SubjectName", studentTeacher.SubjectId);
-            ViewData["TeacherId"] = new SelectList(_context.TeacherDetails, "TeacherId", "Address1", studentTeacher.TeacherId);
+            ViewData["TeacherId"] = new SelectList(_context.TeacherDetails, "TeacherId", "TeacherName", studentTeacher.TeacherId);
             return View(studentTeacher);
         }
 
@@ -125,9 +126,9 @@ namespace PopIt.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StudentId"] = new SelectList(_context.StudentDetails, "StudentId", "Address1", studentTeacher.StudentId);
+            ViewData["StudentId"] = new SelectList(_context.StudentDetails, "StudentId", "StudentName", studentTeacher.StudentId);
             ViewData["SubjectId"] = new SelectList(_context.Subjects, "SubjectId", "SubjectName", studentTeacher.SubjectId);
-            ViewData["TeacherId"] = new SelectList(_context.TeacherDetails, "TeacherId", "Address1", studentTeacher.TeacherId);
+            ViewData["TeacherId"] = new SelectList(_context.TeacherDetails, "TeacherId", "TeacherName", studentTeacher.TeacherId);
             return View(studentTeacher);
         }
 

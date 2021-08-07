@@ -1,0 +1,69 @@
+﻿@model IEnumerable<PopIt.Models.TestRule>
+
+@{
+    ViewData["Title"] = "TestRules";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<h1>TestRules</h1>
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Rules)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalMark)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PassMark)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExamDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Test)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Rules)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalMark)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PassMark)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExamDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Test.SubjectName)
+            </td>
+            <th>
+
+                <center> @Html.ActionLink("Click Now", "Questions", new { TestId = item.TestId }, null)</center>
+            </th>
+        </tr>
+}
+    </tbody>
+</table>

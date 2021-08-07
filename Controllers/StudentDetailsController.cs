@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PopIt.Models;
-
+using Scrypt;
 namespace PopIt.Controllers
 {
     public class StudentDetailsController : Controller
@@ -50,17 +50,15 @@ namespace PopIt.Controllers
             ViewData["CategoryId"] = new SelectList(_context.UserCategories, "CategoryId", "CategoryName");
             return View();
         }
-
-        // POST: StudentDetails/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("StudentId,Emailid,RollNo,Password,ConfirmPassword,CategoryId,GradeId,StudentName,Dob,Address1,Address2,PhoneNumber,CreatedOn,Lastlogin,ModifiedOn")] StudentDetail studentDetail)
         {
             if (ModelState.IsValid)
             {
+                ScryptEncoder encoder1 = new ScryptEncoder();
                 _context.Add(studentDetail);
+                studentDetail.Password = encoder1.Encode(studentDetail.Password);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
