@@ -86,6 +86,10 @@ namespace PopIt.Models
 
                 entity.Property(e => e.QuestionId).HasColumnName("QuestionID");
 
+                entity.Property(e => e.CorrectAnswer)
+                    .IsRequired()
+                    .HasColumnType("text");
+
                 entity.Property(e => e.Description)
                     .IsRequired()
                     .HasColumnType("text");

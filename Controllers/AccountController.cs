@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace PopIt.Controllers
 {
+    
     public class AccountController : Controller
     {
         private readonly PopItContext _context;
@@ -87,12 +88,12 @@ namespace PopIt.Controllers
 
                 }
 
-                else 
-                {
-                    count++;
-                    ModelState.AddModelError("Password", "Invalid login attempt.");
-                    return View("Index");
-                }
+                //else 
+                //{
+                //    count++;
+                //    ModelState.AddModelError("Password", "Invalid login attempt.");
+                //    return View("Index");
+                //}
 
             }
             else
@@ -104,7 +105,7 @@ namespace PopIt.Controllers
             return View(model);
 
         }
-
+        [Authorize]
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Polly;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace PopIt.Controllers
 {
+   
     public class StudentController : Controller
     {
 

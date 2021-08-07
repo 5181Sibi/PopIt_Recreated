@@ -6,91 +6,31 @@
 }
 
 <h1>Questions</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
-    <thead>
+   
+
+        @foreach (var item in Model)
+        {
+
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.QuestionSetNo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RuleId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Question1)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.QuestionImage)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Option1)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Option2)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Option3)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Option4)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Answer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mark)
-            </th>
-            <th></th>
+            <td> @item.QuestionId)  @item.Question1</td>
+
         </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.QuestionSetNo)
+                <input id="Option1" type="radio" name="@item.QuestionId" class="rd" value=" @item.Option1" />@item.Option1
+                <input id="Option2" type="radio" name="@item.QuestionId" class="rd" value=" @item.Option2" />@item.Option2
+                <input id="Option3" type="radio" name="@item.QuestionId" class="rd" value=" @item.Option3" />@item.Option3
+                <input id="Option4" type="radio" name="@item.QuestionId" class="rd" value=" @item.Option4" />@item.Option4
+                <label name="@item.QuestionId" class="rb" style="display:none; color:forestgreen;font:bold" >@item.CorrectAnswer</label>
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RuleId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Question1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuestionImage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Option1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Option2)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Option3)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Option4)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Answer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mark)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.QuestionId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.QuestionId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.QuestionId">Delete</a>
-            </td>
+
+           
         </tr>
-}
-    </tbody>
-</table>
+
+
+    }
+    </table>
+    <button id="btn1" type="button" value="submit" class="btn-success">Submit</button>
+<label></label>
+

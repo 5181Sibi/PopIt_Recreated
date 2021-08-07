@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +9,6 @@ using PopIt.Models;
 
 namespace PopIt.Controllers
 {
-    //[Authorize]
     public class QuestionsController : Controller
     {
         private readonly PopItContext _context;
@@ -20,7 +18,6 @@ namespace PopIt.Controllers
             _context = context;
         }
 
-       
         // GET: Questions
         public async Task<IActionResult> Index()
         {
@@ -53,9 +50,13 @@ namespace PopIt.Controllers
             ViewData["RuleId"] = new SelectList(_context.TestRules, "RuleId", "Rules");
             return View();
         }
+
+        // POST: Questions/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("QuestionId,QuestionSetNo,RuleId,Question1,QuestionImage,Option1,Option2,Option3,Option4,Answer,Description,Mark")] Question question)
+        public async Task<IActionResult> Create([Bind("QuestionId,QuestionSetNo,RuleId,Question1,QuestionImage,Option1,Option2,Option3,Option4,CorrectAnswer,Description,Mark")] Question question)
         {
             if (ModelState.IsValid)
             {
@@ -83,9 +84,13 @@ namespace PopIt.Controllers
             ViewData["RuleId"] = new SelectList(_context.TestRules, "RuleId", "Rules", question.RuleId);
             return View(question);
         }
+
+        // POST: Questions/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("QuestionId,QuestionSetNo,RuleId,Question1,QuestionImage,Option1,Option2,Option3,Option4,Answer,Description,Mark")] Question question)
+        public async Task<IActionResult> Edit(int id, [Bind("QuestionId,QuestionSetNo,RuleId,Question1,QuestionImage,Option1,Option2,Option3,Option4,CorrectAnswer,Description,Mark")] Question question)
         {
             if (id != question.QuestionId)
             {
