@@ -31,37 +31,37 @@ namespace PopIt.Controllers
                                         select customer).ToList();
             return View(Profile);
         }
-        //public IActionResult TestDetails(StudentDetail GradeId)
-        //{
-        //    List<TestDetail> testDetails = (from customer in this._context.TestDetails.Take(10)
-        //                                    select customer).ToList();
-
-
-        //    //HttpContext.Session.SetInt32("GradeId2", model.GradeId);
-        //    //var GradeId = Context.Session.GetInt32("GradeId");
-        //    return View(testDetails);
-        //}
-
-        public async Task<IActionResult> TestDetails()
+        public IActionResult TestDetails()
         {
+            List<TestDetail> testDetails = (from customer in this._context.TestDetails.Take(10)
+                                            select customer).ToList();
 
-            var ap = await (from p in _context.StudentDetails
-                            join e in _context.TestDetails on p.GradeId equals e.GradeId
-                            
-                            select new TestDetail
-                            {
 
-                                GradeId = e.GradeId,
-                                TestId = e.TestId,
-                                TestName = e.TestName,
-                                SubjectName = e.SubjectName
-
-                            }).ToListAsync();
-
-            //HttpContext.Session.SetInt32("GradeId", e.GradeId);
-            return View(ap);
-
+            //HttpContext.Session.SetInt32("GradeId2", model.GradeId);
+            //var GradeId = Context.Session.GetInt32("GradeId");
+            return View(testDetails);
         }
+
+        //public async Task<IActionResult> TestDetails()
+        //{
+
+        //    var ap = await (from p in _context.StudentDetails
+        //                    join e in _context.TestDetails on p.GradeId equals e.GradeId
+
+        //                    select new TestDetail
+        //                    {
+
+        //                        GradeId = e.GradeId,
+        //                        TestId = e.TestId,
+        //                        TestName = e.TestName,
+        //                        SubjectName = e.SubjectName
+
+        //                    }).ToListAsync();
+
+        //    //HttpContext.Session.SetInt32("GradeId", e.GradeId);
+        //    return View(ap);
+
+        //}
         public IActionResult TestRules(int TestId)
         {
 

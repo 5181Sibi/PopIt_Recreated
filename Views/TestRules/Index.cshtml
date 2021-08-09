@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_TeacherLayout.cshtml";
 }
 
-<h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -41,36 +40,41 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-           
-            <td>
-                @Html.DisplayFor(modelItem => item.Rules)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalMark)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PassMark)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExamDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Test.TestName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.RuleId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.RuleId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RuleId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rules)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalMark)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PassMark)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExamDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Test.TestName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.RuleId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.RuleId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.RuleId">Delete</a>
+                </td>
+            </tr>
+        }
+        
     </tbody>
 </table>
+<div class="btn btn-success" >
+    <a asp-controller="Questions" asp-action="">Create Questions</a>
+</div>
