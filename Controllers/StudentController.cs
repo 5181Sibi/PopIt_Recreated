@@ -62,20 +62,32 @@ namespace PopIt.Controllers
             return View(ap);
 
         }
-        public ActionResult TestRules(int TestId)
+        public IActionResult TestRules(int TestId)
         {
 
             List<TestRule> Rules = _context.TestRules.Where(emp => emp.RuleId == TestId).ToList();
             return View(Rules); // but this is not use the obj will return before reached the view
 
         }
-        public ActionResult Questions(int RuleId)
+        public IActionResult Questions(int RuleId)
         {
 
             List<Question> Questions = _context.Questions.Where(emp => emp.QuestionSetNo== RuleId).ToList();
+            
             return View(Questions); // but this is not use the obj will return before reached the view
 
         }
+        //[HttpPost]
+        //[Route ("submit")]
+        //public IActionResult submit(IFormCollection iformcollection)
+        //{
+        //    string[] QuestionIds = iformcollection["QuestionId"];
+        //    foreach(var QuestionId in QuestionIds)
+        //    {
+        //        int answeridCorrect=
+        //    }
+        //    return View("Submit");
+        //}
 
         public IActionResult StudyMaterial()
         {
