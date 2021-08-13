@@ -99,7 +99,9 @@ namespace PopIt.Controllers
             {
                 try
                 {
+                    ScryptEncoder encoder1 = new ScryptEncoder();
                     _context.Update(studentDetail);
+                    studentDetail.Password = encoder1.Encode(studentDetail.Password);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

@@ -1,4 +1,4 @@
-﻿@model PopIt.Models.StudentDetail
+﻿@model PopIt.Models.TeacherDetail
 
 @{
     ViewData["Title"] = "Details";
@@ -8,9 +8,15 @@
 <h1>Details</h1>
 
 <div>
-    <h4>StudentDetail</h4>
+    <h4>TeacherDetail</h4>
     <hr />
     <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TeacherName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TeacherName)
+        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Emailid)
         </dt>
@@ -18,10 +24,10 @@
             @Html.DisplayFor(model => model.Emailid)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RollNo)
+            @Html.DisplayNameFor(model => model.StaffNo)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RollNo)
+            @Html.DisplayFor(model => model.StaffNo)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Password)
@@ -29,29 +35,29 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Password)
         </dd>
-        @*<dt class = "col-sm-2">
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ConfirmPassword)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ConfirmPassword)
-        </dd>*@
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GradeId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.GradeId)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StudentName)
+            @Html.DisplayNameFor(model => model.SubjectName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StudentName)
+            @Html.DisplayFor(model => model.SubjectName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Dob)
+            @Html.DisplayNameFor(model => model.Experience)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Dob)
+            @Html.DisplayFor(model => model.Experience)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNumber)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Address1)
@@ -64,12 +70,6 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Address2)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PhoneNumber)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CreatedOn)
@@ -98,6 +98,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.StudentId">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.TeacherId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

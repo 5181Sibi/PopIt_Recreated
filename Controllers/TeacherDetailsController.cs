@@ -26,6 +26,7 @@ namespace PopIt.Controllers
         public async Task<IActionResult> Index()
         {
             var popItContext = _context.TeacherDetails.Include(t => t.Category);
+
             return View(await popItContext.ToListAsync());
         }
 
@@ -108,7 +109,10 @@ namespace PopIt.Controllers
             {
                 try
                 {
+                    ScryptEncoder encoder = new ScryptEncoder();
+
                     _context.Update(teacherDetail);
+                    teacherDetail.Password = encoder.Encode(teacherDetail.Password);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

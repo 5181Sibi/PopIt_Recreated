@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Create Account for Student</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -22,9 +22,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Password)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.ConfirmPassword)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.GradeId)
             </th>
@@ -70,9 +70,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Password)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.ConfirmPassword)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.GradeId)
             </td>

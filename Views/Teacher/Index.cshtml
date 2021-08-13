@@ -1,8 +1,20 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_TeacherLayout.cshtml";
 }
 
-<h1>Index</h1>
+@{
 
+    var userId = Context.Session.GetString("userId");
+    if (userId == null)
+    {
+        // Context.Response.Redirect("/Account");
+
+    }
+}
+<h1 style="color:brown">Welcome Back @userId !!!</h1>
+<br />
+<br />
+
+<h3><center> Teaching kids to count is fine, but teaching them what counts is best !</center></h3>

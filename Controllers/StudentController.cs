@@ -25,10 +25,11 @@ namespace PopIt.Controllers
         {
             return View();
         }
-        public IActionResult Profile()
+        public IActionResult Profile(StudentDetail studentDetail)
         {
             List<StudentDetail> Profile = (from customer in this._context.StudentDetails.Take(10)
                                         select customer).ToList();
+            //HttpContext.Session.SetString("Rollno", studentDetail.RollNo);
             return View(Profile);
         }
         public IActionResult TestDetails()

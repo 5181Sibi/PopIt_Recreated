@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using PopIt.Models;
 using Scrypt;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,14 +21,14 @@ namespace PopIt.Controllers
             _context = context;
            
         }
-        EnvironmentVariableTarget count = 0;
+        
         public IActionResult Index()
         {
             return View();
         }
 
 
-
+        int count = 0;
         public async Task<ActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
@@ -51,16 +50,21 @@ namespace PopIt.Controllers
                     bool isStudentAccount = encoder1.Compare(model.Password, _context.StudentDetails.SingleOrDefault(x => x.RollNo == model.Username).Password);
                     if (isStudentAccount)
                     {
-                        count = 0;
-                        HttpContext.Session.SetString("userId", _context.StudentDetails.SingleOrDefault(x => x.RollNo == model.Username).StudentName);
-                        HttpContext.Session.SetInt32("GradeId", _context.StudentDetails.SingleOrDefault(x => x.RollNo == model.Username).GradeId);
+                        HttpContext.Session.SetString("userId", StudentAccount.StudentName);
+                        HttpContext.Session.SetString("StudentID", StudentAccount.RollNo);
 
                         return RedirectToAction("Index", "Student");
                     }
                     else
                     {
-                        ModelState.AddModelError("Password", "Password is wrong.");
+                        if (count++ > 3)
+                        {
+                             ModelState.AddModelError("Password", "Your Account is locked.");
+                            return View("About");
+                        }
+                        ModelState.AddModelError("Password", "Username or Password is wrong.");
                         return View("Index");
+
                     }
 
                 }
@@ -69,31 +73,32 @@ namespace PopIt.Controllers
                     bool IsTeachertAccount = encoder.Compare(model.Password, _context.TeacherDetails.SingleOrDefault(x => x.StaffNo == model.Username).Password);
                     if (IsTeachertAccount)
                     {
-                        count = 0;
+                       
                         HttpContext.Session.SetString("userId", TeacherAccount.TeacherName);
+                        HttpContext.Session.SetString("StaffID", TeacherAccount.StaffNo);
                         return RedirectToAction("Index", "Teacher");
                     }
                     else
                     {
-                        ModelState.AddModelError("Password", "Password is wrong.");
+                        ModelState.AddModelError("Password", "Username or Password is wrong.");
                         return View("Index");
                     }
 
                 }
                 else  if (AdminAccount != null)
                 {
-                    count = 0;
+                   
                     HttpContext.Session.SetString("userId", AdminAccount.AdminNo);
                     return RedirectToAction("Index", "Admin");
 
                 }
 
-                //else 
-                //{
-                //    count++;
-                //    ModelState.AddModelError("Password", "Invalid login attempt.");
-                //    return View("Index");
-                //}
+                else
+                {
+                    
+                    ModelState.AddModelError("Password", "Invalid login attempt.");
+                    return View("Index");
+                }
 
             }
             else

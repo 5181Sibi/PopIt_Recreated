@@ -25,6 +25,7 @@ namespace PopIt.Controllers
             List<TeacherDetail> Profile = (from customer in this._context.TeacherDetails.Take(10)
                                         select customer).ToList();
             return View(Profile);
+
             
         }
         public IActionResult CreateAssessment()

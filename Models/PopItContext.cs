@@ -169,7 +169,6 @@ namespace PopIt.Models
                 entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
 
                 entity.Property(e => e.ConfirmPassword)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -280,7 +279,6 @@ namespace PopIt.Models
                 entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
 
                 entity.Property(e => e.ConfirmPassword)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
