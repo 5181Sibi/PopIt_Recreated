@@ -33,8 +33,7 @@ namespace PopIt.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=ASPLAPR405;Database=PopIt;Trusted_Connection=True;");
+               optionsBuilder.UseSqlServer("Server=ASPLAPR405;Database=PopIt;Trusted_Connection=True;");
             }
         }
 
@@ -83,15 +82,17 @@ namespace PopIt.Models
 
             modelBuilder.Entity<Question>(entity =>
             {
-                entity.HasKey(e => e.QuestionNumber);
-
                 entity.HasComment("");
+
+                entity.Property(e => e.QuestionId).HasColumnName("QuestionID");
+
+                entity.Property(e => e.CorrectAnswer)
+                    .IsRequired()
+                    .HasColumnType("text");
 
                 entity.Property(e => e.Description)
                     .IsRequired()
                     .HasColumnType("text");
-
-                entity.Property(e => e.GradeId).HasColumnName("GradeID");
 
                 entity.Property(e => e.Option1)
                     .IsRequired()
@@ -117,19 +118,13 @@ namespace PopIt.Models
 
                 entity.Property(e => e.QuestionImage).HasColumnType("image");
 
-                entity.Property(e => e.TestId).HasColumnName("TestID");
+                entity.Property(e => e.RuleId).HasColumnName("RuleID");
 
-                entity.HasOne(d => d.Grade)
+                entity.HasOne(d => d.Rule)
                     .WithMany(p => p.Questions)
-                    .HasForeignKey(d => d.GradeId)
+                    .HasForeignKey(d => d.RuleId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Questions_TestRules");
-
-                entity.HasOne(d => d.Test)
-                    .WithMany(p => p.Questions)
-                    .HasForeignKey(d => d.TestId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Questions_TestDetails");
             });
 
             modelBuilder.Entity<Result>(entity =>
@@ -153,12 +148,6 @@ namespace PopIt.Models
                     .HasForeignKey(d => d.SubjectId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Results_Subjects");
-
-                entity.HasOne(d => d.Test)
-                    .WithMany(p => p.Results)
-                    .HasForeignKey(d => d.TestId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Results_TestDetails");
             });
 
             modelBuilder.Entity<StudentDetail>(entity =>
@@ -180,7 +169,6 @@ namespace PopIt.Models
                 entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
 
                 entity.Property(e => e.ConfirmPassword)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -203,7 +191,7 @@ namespace PopIt.Models
 
                 entity.Property(e => e.Password)
                     .IsRequired()
-                    .HasMaxLength(50)
+                    .HasMaxLength(550)
                     .IsUnicode(false);
 
                 entity.Property(e => e.PhoneNumber)
@@ -291,7 +279,6 @@ namespace PopIt.Models
                 entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
 
                 entity.Property(e => e.ConfirmPassword)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -313,7 +300,6 @@ namespace PopIt.Models
 
                 entity.Property(e => e.Password)
                     .IsRequired()
-                    .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.PhoneNumber)
@@ -349,27 +335,24 @@ namespace PopIt.Models
 
                 entity.Property(e => e.TestId).HasColumnName("TestID");
 
-                entity.Property(e => e.GradeId).HasColumnName("GradeID");
-
-                entity.Property(e => e.SubjectId).HasColumnName("SubjectID");
+                entity.Property(e => e.SubjectName)
+                    .IsRequired()
+                    .HasMaxLength(550)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.TestName)
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
-
-                entity.HasOne(d => d.Subject)
-                    .WithMany(p => p.TestDetails)
-                    .HasForeignKey(d => d.SubjectId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_TestDetails_Subjects");
             });
 
             modelBuilder.Entity<TestRule>(entity =>
             {
-                entity.HasKey(e => e.GradeId);
+                entity.HasKey(e => e.RuleId);
 
-                entity.Property(e => e.GradeId).HasColumnName("GradeID");
+                entity.Property(e => e.RuleId).HasColumnName("RuleID");
+
+                entity.Property(e => e.ExamDate).HasColumnType("date");
 
                 entity.Property(e => e.Rules)
                     .IsRequired()
@@ -381,6 +364,7 @@ namespace PopIt.Models
                 entity.HasOne(d => d.Test)
                     .WithMany(p => p.TestRules)
                     .HasForeignKey(d => d.TestId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TestRules_TestDetails");
             });
 

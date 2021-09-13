@@ -15,6 +15,5 @@ namespace PopIt.Models
 
         public virtual StudentDetail Student { get; set; }
         public virtual Subject Subject { get; set; }
-        public virtual TestDetail Test { get; set; }
     }
 }

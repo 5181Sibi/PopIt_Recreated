@@ -1,0 +1,37 @@
+﻿@model PopIt.Models.TestDetail
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TestDetail</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TestName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TestName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SubjectName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SubjectName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.GradeId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.GradeId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.TestId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

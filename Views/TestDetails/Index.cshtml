@@ -1,0 +1,54 @@
+﻿@model IEnumerable<PopIt.Models.TestDetail>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+
+@*<h1>Index</h1>*@
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TestName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubjectName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GradeId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TestName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubjectName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GradeId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.TestId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.TestId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.TestId">Delete</a>
+                </td>
+            </tr>
+        }
+        <div class="form-group">
+            <a asp-controller="TestRules" asp-action="">Create Test Rules</a>
+        </div>
+    </tbody>
+
+    
+</table>

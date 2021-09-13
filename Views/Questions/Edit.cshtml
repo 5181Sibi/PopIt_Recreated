@@ -1,0 +1,85 @@
+﻿@model PopIt.Models.Question
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Question</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="QuestionId" />
+            <div class="form-group">
+                <label asp-for="QuestionSetNo" class="control-label"></label>
+                <input asp-for="QuestionSetNo" class="form-control" />
+                <span asp-validation-for="QuestionSetNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RuleId" class="control-label"></label>
+                <select asp-for="RuleId" class="form-control" asp-items="ViewBag.RuleId"></select>
+                <span asp-validation-for="RuleId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Question1" class="control-label"></label>
+                <input asp-for="Question1" class="form-control" />
+                <span asp-validation-for="Question1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QuestionImage" class="control-label"></label>
+                <input asp-for="QuestionImage" class="form-control" />
+                <span asp-validation-for="QuestionImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Option1" class="control-label"></label>
+                <input asp-for="Option1" class="form-control" />
+                <span asp-validation-for="Option1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Option2" class="control-label"></label>
+                <input asp-for="Option2" class="form-control" />
+                <span asp-validation-for="Option2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Option3" class="control-label"></label>
+                <input asp-for="Option3" class="form-control" />
+                <span asp-validation-for="Option3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Option4" class="control-label"></label>
+                <input asp-for="Option4" class="form-control" />
+                <span asp-validation-for="Option4" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CorrectAnswer" class="control-label"></label>
+                <input asp-for="CorrectAnswer" class="form-control" />
+                <span asp-validation-for="CorrectAnswer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mark" class="control-label"></label>
+                <input asp-for="Mark" class="form-control" />
+                <span asp-validation-for="Mark" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

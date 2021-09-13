@@ -1,0 +1,66 @@
+﻿@model IEnumerable<PopIt.Models.Question>
+
+@{
+    ViewData["Title"] = "Questions";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<h1>Questions</h1>
+<form asp-controller="Student" asp-action="submit">
+
+    <table class="table">
+
+
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td> @item.QuestionId)  @item.Question1</td>
+
+            </tr>
+            <tr>
+                <td>
+                    <input id="Option1" type="radio" name="@item.QuestionId" class="rd" value=" @item.Option1" />@item.Option1
+                    <input id="Option2" type="radio" name="@item.QuestionId" class="rd" value=" @item.Option2" />@item.Option2
+                    <input id="Option3" type="radio" name="@item.QuestionId" class="rd" value=" @item.Option3" />@item.Option3
+                    <input id="Option4" type="radio" name="@item.QuestionId" class="rd" value=" @item.Option4" />@item.Option4
+                    <label name="@item.QuestionId" class="rb" style="display:none; color:forestgreen;font:bold">@item.CorrectAnswer</label>
+                </td>
+
+
+            </tr>
+
+
+        }
+
+    </table>
+    @*<input type="submit" value="submit" />*@
+    <button id="but1" type="button" value="submit" class="btn-success" onclick="displayresults();">Submit</button>
+    <label id="ibluseranswer"></label>
+</form>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#but1").click(function () {
+            $(".rb").show();
+            $(".rb").attr("disabled", true);
+        });
+
+    });
+    function displayresults() {
+        document.getElementById("ibluseranswer").innerHTML = "";
+        var result = document.getElementsByTagName('');
+        for (i = 0; i < result.length; i++) {
+            if (result[i].type == "radio") {
+                if (result[i].checked) {
+                    document.getElementById("ibluseranswer").innerHTML += "Q" + result[i].name + ")" + " Your Selected Answer is :" + result[i].value + "</br>";
+                }
+            }
+
+        }
+    }
+</script>
+

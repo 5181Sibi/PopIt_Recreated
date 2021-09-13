@@ -3,12 +3,16 @@
     ViewData["Title"] = "Index";
 }
 
-
+<style>
+    body {
+        background-color: lightblue
+    }
+</style>
 <h2>Login</h2>
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <div class="jumbotron">
-            <form role="form" asp-action="Login" asp-controller="Account" method="post">
+            <form role="form" asp-action="Login" asp-controller="Account">
                 <div class="form-group">
                     <label for="text">User Name</label>
                     <input type="text" name="Username" asp-for="Username" autocomplete="off" class="form-control input-sm" placeholder="User name">

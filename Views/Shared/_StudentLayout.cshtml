@@ -8,6 +8,11 @@
     <title>@ViewData["Title"] - PopIt</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        body {
+            background-color: lightblue
+        }
+    </style>
 </head>
 @{
 
@@ -36,7 +41,10 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Student" asp-action="Profile">Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Student" asp-action="">Take Assessment</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Student" asp-action="TestDetails">Take Assessment</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="FileUp" asp-action="student">Study Materials</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Student" asp-action="">Results</a>
